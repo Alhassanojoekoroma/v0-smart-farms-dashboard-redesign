@@ -28,7 +28,7 @@ export default function RootLayout({
             <Suspense fallback={<div>Loading...</div>}>
               <Header />
             </Suspense>
-            <main className="flex-1 overflow-y-auto p-6 border-background border bg-foreground">
+            <main className="flex-1 overflow-y-auto p-6 border-background border bg-green-950">
               <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
             </main>
           </div>

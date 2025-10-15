@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -10,40 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Search, Filter, MoreVertical, UserPlus } from "lucide-react"
-import { supabase } from "@/lib/supabase"
+import { farmers } from "@/lib/mock-data"
 import Link from "next/link"
 
-interface Farmer {
-  id: string
-  name: string
-  phone: string
-  location: string
-  community: string
-  land_size: string
-  crop: string
-  status: string
-  avatar: string
-}
-
 export default function CustomersPage() {
-  const [farmers, setFarmers] = useState<Farmer[]>([])
-  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [locationFilter, setLocationFilter] = useState("all")
-
-  useEffect(() => {
-    async function fetchFarmers() {
-      const { data } = await supabase
-        .from('farmers')
-        .select('*')
-        .order('name', { ascending: true })
-
-      if (data) setFarmers(data)
-      setLoading(false)
-    }
-
-    fetchFarmers()
-  }, [])
 
   const filteredFarmers = farmers.filter((farmer) => {
     const matchesSearch =
@@ -131,20 +103,7 @@ export default function CustomersPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {loading ? (
-                  <TableRow>
-                    <TableCell colSpan={9} className="text-center py-8">
-                      Loading farmers...
-                    </TableCell>
-                  </TableRow>
-                ) : filteredFarmers.length === 0 ? (
-                  <TableRow>
-                    <TableCell colSpan={9} className="text-center py-8">
-                      No farmers found
-                    </TableCell>
-                  </TableRow>
-                ) : (
-                  filteredFarmers.map((farmer, index) => (
+                {filteredFarmers.map((farmer, index) => (
                   <TableRow key={farmer.id} className="hover:bg-muted/50">
                     <TableCell className="font-medium">{index + 1}</TableCell>
                     <TableCell>
@@ -164,7 +123,7 @@ export default function CustomersPage() {
                     <TableCell className="text-muted-foreground">{farmer.phone}</TableCell>
                     <TableCell>{farmer.location}</TableCell>
                     <TableCell className="text-muted-foreground">{farmer.community}</TableCell>
-                    <TableCell>{farmer.land_size}</TableCell>
+                    <TableCell>{farmer.landSize}</TableCell>
                     <TableCell>
                       <Badge variant="outline" className="border-secondary text-secondary">
                         {farmer.crop}
@@ -200,8 +159,7 @@ export default function CustomersPage() {
                       </DropdownMenu>
                     </TableCell>
                   </TableRow>
-                  ))
-                )}
+                ))}
               </TableBody>
             </Table>
           </div>
