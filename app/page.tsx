@@ -18,7 +18,7 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-semibold text-foreground">Dashboard</h1>
+          <h1 className="text-3xl font-semibold text-background">Dashboard</h1>
           <p className="text-sm text-muted-foreground mt-1">An easy way to manage sales with care and precision.</p>
         </div>
         <Select defaultValue="may-2024">
