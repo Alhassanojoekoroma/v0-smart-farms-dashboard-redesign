@@ -1,8 +1,9 @@
 "use client"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowUpRight, ArrowDownRight, TrendingUp, Calendar, MoreVertical, Sparkles } from "lucide-react"
-import { transactions, revenueData, performanceData, salesReportData } from "@/lib/mock-data"
+import { performanceData, salesReportData } from "@/lib/mock-data"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "@/components/charts/bar-chart-wrapper"
 import {
   PieChart,
@@ -11,8 +12,47 @@ import {
   ResponsiveContainer as PieResponsiveContainer,
 } from "@/components/charts/pie-chart-wrapper"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { supabase } from "@/lib/supabase"
+
+interface Transaction {
+  id: string
+  transaction_number: string
+  amount: number
+  payment_status: string
+  transaction_date: string
+}
+
+interface RevenueData {
+  month: string
+  income: number
+  expenses: number
+}
 
 export default function DashboardPage() {
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [revenueData, setRevenueData] = useState<RevenueData[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data: transactionData } = await supabase
+        .from('transactions')
+        .select('*')
+        .order('transaction_date', { ascending: false })
+        .limit(7)
+
+      const { data: revenueStats } = await supabase
+        .from('revenue_stats')
+        .select('*')
+        .order('year', { ascending: true })
+
+      if (transactionData) setTransactions(transactionData)
+      if (revenueStats) setRevenueData(revenueStats)
+      setLoading(false)
+    }
+
+    fetchData()
+  }, [])
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -108,21 +148,29 @@ export default function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
-              {transactions.slice(0, 7).map((transaction) => (
-                <div key={transaction.id} className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-xl">
-                    {transaction.icon}
+              {loading ? (
+                <p className="text-center text-muted-foreground py-4">Loading transactions...</p>
+              ) : transactions.length > 0 ? (
+                transactions.map((transaction) => (
+                  <div key={transaction.id} className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-xl">
+                      💰
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-sm">{transaction.transaction_number}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(transaction.transaction_date).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-muted-foreground">{transaction.payment_status}</p>
+                      <p className="text-xs text-muted-foreground">Le {transaction.amount.toLocaleString()}</p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm">{transaction.product}</p>
-                    <p className="text-xs text-muted-foreground">{transaction.date}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-muted-foreground">{transaction.paymentStatus}</p>
-                    <p className="text-xs text-muted-foreground">Le {transaction.amount.toLocaleString()}</p>
-                  </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-center text-muted-foreground py-4">No transactions yet</p>
+              )}
             </CardContent>
           </Card>
         </div>
