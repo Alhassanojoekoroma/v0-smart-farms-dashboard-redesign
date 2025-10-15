@@ -28,12 +28,12 @@ export default function ProductsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-semibold text-foreground">Product</h1>
-          <p className="text-sm text-muted-foreground mt-1">Manage agricultural products and inventory</p>
+          <h1 className="text-3xl font-semibold text-background">Product</h1>
+          <p className="text-sm mt-1 text-popover">Manage agricultural products and inventory</p>
         </div>
         <Button className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90">
           <Plus className="h-4 w-4" />
-          Add Product
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Add Product
         </Button>
       </div>
 
