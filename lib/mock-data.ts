@@ -1,0 +1,172 @@
+// Mock data for SmartFarms dashboard with Sierra Leone context
+
+export const farmers = [
+  {
+    id: 1,
+    name: "John Kamara",
+    phone: "+232 76 123 456",
+    location: "Bombali",
+    community: "Mambo",
+    landSize: "3.5 acres",
+    crop: "Cassava",
+    status: "Active",
+    avatar: "/placeholder.svg?height=40&width=40",
+  },
+  {
+    id: 2,
+    name: "Dina Mansaray",
+    phone: "+232 78 987 654",
+    location: "Bombali",
+    community: "SS",
+    landSize: "1 acre",
+    crop: "Cowpea",
+    status: "Active",
+    avatar: "/placeholder.svg?height=40&width=40",
+  },
+  {
+    id: 3,
+    name: "Mustapha Koroma",
+    phone: "+232 77 764 009",
+    location: "Moyamba",
+    community: "Mosanda",
+    landSize: "3-10 acres",
+    crop: "Maize",
+    status: "Inactive",
+    avatar: "/placeholder.svg?height=40&width=40",
+  },
+  {
+    id: 4,
+    name: "Fatmata Sesay",
+    phone: "+232 76 555 123",
+    location: "Port Loko",
+    community: "Lunsar",
+    landSize: "2 acres",
+    crop: "Rice",
+    status: "Active",
+    avatar: "/placeholder.svg?height=40&width=40",
+  },
+  {
+    id: 5,
+    name: "Mohamed Bangura",
+    phone: "+232 78 444 789",
+    location: "Kailahun",
+    community: "Pendembu",
+    landSize: "5 acres",
+    crop: "Vegetables",
+    status: "Active",
+    avatar: "/placeholder.svg?height=40&width=40",
+  },
+]
+
+export const transactions = [
+  {
+    id: "TXN001",
+    farmer: "John Kamara",
+    product: "Premium Rice Seeds",
+    amount: 1200,
+    date: "2024-05-15",
+    paymentStatus: "Completed",
+    deliveryStatus: "Delivered",
+    icon: "🌾",
+  },
+  {
+    id: "TXN002",
+    farmer: "Dina Mansaray",
+    product: "Cowpea Seeds",
+    amount: 450,
+    date: "2024-05-16",
+    paymentStatus: "Pending",
+    deliveryStatus: "Processing",
+    icon: "🫘",
+  },
+  {
+    id: "TXN003",
+    farmer: "Mustapha Koroma",
+    product: "Fertilizer NPK",
+    amount: 800,
+    date: "2024-05-14",
+    paymentStatus: "Completed",
+    deliveryStatus: "Shipped",
+    icon: "🧪",
+  },
+  {
+    id: "TXN004",
+    farmer: "Fatmata Sesay",
+    product: "Irrigation Kit",
+    amount: 2500,
+    date: "2024-05-13",
+    paymentStatus: "Pending",
+    deliveryStatus: "Awaiting Payment",
+    icon: "💧",
+  },
+  {
+    id: "TXN005",
+    farmer: "Mohamed Bangura",
+    product: "Vegetable Seeds Mix",
+    amount: 350,
+    date: "2024-05-12",
+    paymentStatus: "Completed",
+    deliveryStatus: "Delivered",
+    icon: "🥬",
+  },
+]
+
+export const products = [
+  {
+    id: 1,
+    name: "Premium Rice Seeds",
+    category: "Seeds",
+    sku: "SED-RICE-001",
+    price: 1200,
+    stock: 150,
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Cowpea Seeds",
+    category: "Seeds",
+    sku: "SED-COWP-002",
+    price: 450,
+    stock: 200,
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Fertilizer NPK 15-15-15",
+    category: "Fertilizer",
+    sku: "FER-NPK-003",
+    price: 800,
+    stock: 80,
+    status: "Active",
+  },
+  {
+    id: 4,
+    name: "Irrigation Kit",
+    category: "Equipment",
+    sku: "EQP-IRR-004",
+    price: 2500,
+    stock: 25,
+    status: "Active",
+  },
+]
+
+export const revenueData = [
+  { month: "Jan", income: 45000, expenses: 32000 },
+  { month: "Feb", income: 52000, expenses: 35000 },
+  { month: "Mar", income: 48000, expenses: 33000 },
+  { month: "Apr", income: 61000, expenses: 38000 },
+  { month: "May", income: 55000, expenses: 36000 },
+  { month: "Jun", income: 67000, expenses: 40000 },
+]
+
+export const performanceData = [
+  { name: "View Count", value: 65, color: "hsl(var(--chart-1))" },
+  { name: "Percentage", value: 23, color: "hsl(var(--chart-2))" },
+  { name: "Sales", value: 16, color: "hsl(var(--chart-3))" },
+]
+
+export const salesReportData = [
+  { label: "Product Launched", value: 233 },
+  { label: "Ongoing Product", value: 23 },
+  { label: "Product Sold", value: 482 },
+]
