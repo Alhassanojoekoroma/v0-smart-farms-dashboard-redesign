@@ -23,7 +23,7 @@ export default function DashboardPage() {
         </div>
         <Select defaultValue="may-2024">
           <SelectTrigger className="w-[220px] border-primary">
-            <Calendar className="mr-2 h-4 w-4" />
+            <Calendar className="mr-2 h-4 w-4 text-background" />
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

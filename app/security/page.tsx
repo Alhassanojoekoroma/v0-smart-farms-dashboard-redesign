@@ -8,7 +8,7 @@ export default function SecurityPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-semibold text-foreground">Security</h1>
+        <h1 className="text-3xl font-semibold text-background">Security</h1>
         <p className="text-sm text-muted-foreground mt-1">Monitor and manage system security</p>
       </div>
 

@@ -27,9 +27,9 @@ export default function TransactionsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between text-background">
         <div>
-          <h1 className="text-3xl font-semibold text-foreground">Transactions</h1>
+          <h1 className="text-3xl font-semibold text-white">Transactions</h1>
           <p className="text-sm text-muted-foreground mt-1">Track and manage all orders and payments</p>
         </div>
         <Button variant="outline" className="gap-2 bg-transparent">
